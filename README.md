@@ -1,0 +1,2 @@
+# Personal-Advent-of-Code-Solutions
+Repository containing my solution of the AoC that I started to practice and refine my Java skills
