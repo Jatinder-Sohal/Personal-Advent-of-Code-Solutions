@@ -8,11 +8,10 @@ public class Day2 {
         char letter;
         int number;
         int total = 0;
-        int gameCount = 0;
-        boolean addGame;
+
+        int gameMax = 0;
+        int blueMax = 0, greenMax = 0, redMax = 0;
         while ((line = br.readLine()) != null) {
-            addGame = true;
-            gameCount++;
             line = line.substring(line.indexOf(":")+2);
             for(int i = 0; i < line.length(); i++){
                 number = 0;
@@ -28,26 +27,26 @@ public class Day2 {
                 if (line.substring(i).length() > 2){
                     switch (line.charAt(i+2)){
                         case 'r':
-                            if (number > 12){
-                                addGame = false;
+                            if (number > redMax){
+                                redMax = number;
                             }
                             break;
                         case 'g':
-                            if (number > 13){
-                                addGame = false;
+                            if (number > greenMax){
+                                greenMax = number;
                             }
                             break;
                         case 'b':
-                            if (number > 14){
-                                addGame = false;
+                            if (number > blueMax){
+                                blueMax = number;
                             }
                             break;
                     }
                 }
             }
-            if (addGame){
-                total += gameCount;
-            }
+            gameMax = blueMax * greenMax * redMax;
+            blueMax = 0; greenMax = 0; redMax = 0;
+            total += gameMax;
         }
         System.out.println(total);
     }
