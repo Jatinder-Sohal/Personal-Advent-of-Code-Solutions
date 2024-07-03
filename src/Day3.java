@@ -20,7 +20,7 @@ public class Day3 {
             symbolPlacement.put(count, new HashSet<Integer>());
             for (int i = 0; i < line.length(); i++) {
                 letter = line.charAt(i);
-                if (!Character.isDigit(letter) && !Character.isLetter(letter) && !Character.isWhitespace(letter) && letter != '.'){
+                if (letter == '*'){
                     symbolPlacement.get(count).add(i);
                 }
             }
@@ -46,9 +46,6 @@ public class Day3 {
                                 symbolExists = true;
                             }
                         }
-                        if (symbolPlacement.get(lineCount+1).contains(i)){
-                            symbolExists = true;
-                        }
                         for (i = i+1; i<line.length() && Character.isDigit(line.charAt(i)); i++){
                             number.append(line.charAt(i));
                             if (symbolPlacement.get(lineCount+1).contains(i)){
@@ -69,9 +66,6 @@ public class Day3 {
                                 symbolExists = true;
                             }
                         }
-                        if (symbolPlacement.get(lineCount-1).contains(i)){
-                            symbolExists = true;
-                        }
                         for (i = i+1; i<line.length() && Character.isDigit(line.charAt(i)); i++){
                             number.append(line.charAt(i));
                             if (symbolPlacement.get(lineCount-1).contains(i)){
@@ -84,7 +78,7 @@ public class Day3 {
                             }
                         }
                     }else {
-                        if (symbolPlacement.get(lineCount).contains(i-1) || checkVertically(lineCount, i-1) || checkVertically(lineCount, i)){
+                        if (checkVertically(lineCount, i)){
                             symbolExists = true;
                         }
                         if (i != 0){
